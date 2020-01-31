@@ -4,17 +4,17 @@ import co.paralleluniverse.fibers.Suspendable
 import net.corda.core.flows.*
 import net.corda.core.utilities.ProgressTracker
 
+data class MyClass(val value: Int)
+
 // *********
 // * Flows *
 // *********
 @InitiatingFlow
 @StartableByRPC
-class Initiator : FlowLogic<Unit>() {
+class Initiator : FlowLogic<MyClass>() {
     override val progressTracker = ProgressTracker()
-
-    @Suspendable
-    override fun call() {
-        // Initiator flow logic goes here.
+    override fun call(): MyClass {
+        return MyClass(42)
     }
 }
 
